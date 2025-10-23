@@ -11,7 +11,8 @@ import SwiftUI
 struct ApuestaTotalTechnicalTestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            MedalsModuleBuilder.build()
         }
     }
 }

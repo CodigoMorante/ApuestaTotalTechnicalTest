@@ -1,11 +1,12 @@
 //
-//  MedalRepositoryImpl.swift
+//  MedalRepository.swift
 //  ApuestaTotalTechnicalTest
 //
 //  Created by Christian Morante on 23/10/25.
 //
 
-final class MedalRepositoryImpl: MedalRepositoryProtocol {
+final class MedalRepository: MedalRepositoryProtocol {
+    
     private let service: MedalServiceProtocol
 
     init(service: MedalServiceProtocol = MedalServiceMock()) {
@@ -16,4 +17,5 @@ final class MedalRepositoryImpl: MedalRepositoryProtocol {
         let dtos = try await service.fetchMedals()
         return dtos.map { $0.toDomain() }
     }
+    
 }

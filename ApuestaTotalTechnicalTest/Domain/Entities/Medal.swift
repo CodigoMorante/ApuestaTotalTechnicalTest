@@ -5,7 +5,7 @@
 //  Created by Christian Morante on 23/10/25.
 //
 
-struct Medal {
+struct Medal: Identifiable {
     let id: String
     let name: String
     let description: String

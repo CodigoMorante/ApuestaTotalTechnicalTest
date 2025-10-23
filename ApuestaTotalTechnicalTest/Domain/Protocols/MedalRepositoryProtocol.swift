@@ -5,6 +5,6 @@
 //  Created by Christian Morante on 23/10/25.
 //
 
-class MedalRepositoryProtocol {
-    
+protocol MedalRepositoryProtocol {
+    func getMedals() async throws -> [Medal]
 }

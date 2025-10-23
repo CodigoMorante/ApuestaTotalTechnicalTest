@@ -6,7 +6,9 @@
 //
 
 final class MedalServiceMock: MedalServiceProtocol {
+    
     func fetchMedals() async throws -> [MedalDTO] {
         return MockLoader.load("MedalsMock")
     }
+    
 }
