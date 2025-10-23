@@ -1,10 +1,10 @@
 //
-//  MedalsView.swift
+//  MedalRepositoryProtocol.swift
 //  ApuestaTotalTechnicalTest
 //
 //  Created by Christian Morante on 23/10/25.
 //
 
-class MedalsView {
+class MedalRepositoryProtocol {
     
 }
