@@ -10,6 +10,7 @@ import Foundation
 
 @MainActor
 class MedalsViewModel: ObservableObject {
+    
     @Published var medals: [Medal] = []
     @Published var isLoading = false
     @Published var errorMessage: String? = nil
