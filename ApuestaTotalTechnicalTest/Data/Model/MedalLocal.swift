@@ -1,14 +1,17 @@
 //
-//  Medal.swift
+//  MedalLocal.swift
 //  ApuestaTotalTechnicalTest
 //
-//  Created by Christian Morante on 23/10/25.
+//  Created by Christian Morante on 24/10/25.
 //
 
-class Medal: Identifiable {
-    var id: String
+import SwiftData
+
+@Model
+class MedalLocal {
+    @Attribute(.unique) var id: String
     var name: String
-    var description: String
+    var descriptionMedal: String
     var icon: String
     var category: String
     var rarity: String
@@ -22,28 +25,11 @@ class Medal: Identifiable {
     var nextLevelGoal: String
     var isLocked: Bool
     var animationType: String
-    
-    init(
-        id: String,
-        name: String,
-        description: String,
-        icon: String,
-        category: String,
-        rarity: String,
-        backgroundColor: String,
-        progressColor: String,
-        level: Int,
-        points: Int,
-        maxLevel: Int,
-        reward: String,
-        unlockedAt: String,
-        nextLevelGoal: String,
-        isLocked: Bool,
-        animationType: String
-    ) {
+
+    init(id: String, name: String, descriptionMedal: String, icon: String, category: String, rarity: String, backgroundColor: String, progressColor: String, level: Int, points: Int, maxLevel: Int, reward: String, unlockedAt: String, nextLevelGoal: String, isLocked: Bool, animationType: String) {
         self.id = id
         self.name = name
-        self.description = description
+        self.descriptionMedal = descriptionMedal
         self.icon = icon
         self.category = category
         self.rarity = rarity

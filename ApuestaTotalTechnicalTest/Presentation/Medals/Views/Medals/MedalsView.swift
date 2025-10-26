@@ -6,9 +6,9 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MedalsView: View {
-    
     @StateObject var viewModel: MedalsViewModel
     
     let columns = [
@@ -32,6 +32,8 @@ struct MedalsView: View {
                 .background(Color.green.opacity(0.3))
                 .onAppear {
                     viewModel.loadMedals()
+                    viewModel.increaseMedalPoints()
+                    print("Hola")
                 }
 
             }
@@ -81,7 +83,17 @@ extension Color {
         )
     }
 }
-
-#Preview {
-    MedalsView(viewModel: MedalsViewModel(useCase: GetMedalsUseCase(repository: MedalRepository())))
+extension ModelContainer {
+    static var previewWithData: ModelContainer {
+        let schema = Schema([MedalLocal.self])
+        let container = try! ModelContainer(for: schema, configurations: [.init(isStoredInMemoryOnly: true)])
+        let context = container.mainContext
+        context.insert(MedalLocal(id: "M1", name: "A", descriptionMedal: "AAAA", icon: "AAA", category: "ASDASD", rarity: "ASD", backgroundColor: "#FFF4E6", progressColor: "#FFF4E6", level: 2, points: 2, maxLevel: 2, reward: "ASD", unlockedAt: "ASD", nextLevelGoal: "ASD", isLocked: false, animationType: "asd"))
+        context.insert(MedalLocal(id: "M2", name: "B", descriptionMedal: "AAAA", icon: "AAA", category: "ASDASD", rarity: "ASD", backgroundColor: "#FFF4E6", progressColor: "#FFF4E6", level: 2, points: 2, maxLevel: 2, reward: "ASD", unlockedAt: "ASD", nextLevelGoal: "ASD", isLocked: false, animationType: "asd"))
+        return container
+    }
 }
+//#Preview {
+//    let context = ModelContainer.previewWithData.mainContext
+//    MedalsView(viewModel: MedalsViewModel(useCase: GetMedalsUseCase(repository: MedalRepository(context: context))))
+//}

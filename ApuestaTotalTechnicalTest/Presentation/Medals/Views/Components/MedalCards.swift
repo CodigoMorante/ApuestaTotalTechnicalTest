@@ -53,11 +53,11 @@ struct MedalCards: View {
                         }
                         Text(medal.category)
                             .foregroundStyle(.blue)
-                        Text("\(medal.points)")
+                        Text("Points: \(medal.points)")
                             .foregroundStyle(.purple)
                         Text(medal.rarity)
                             .foregroundStyle(.green)
-                        Text("\(medal.maxLevel)")
+                        Text("Max Level: \(medal.maxLevel)")
                             .foregroundStyle(.orange)
                     }
                 }

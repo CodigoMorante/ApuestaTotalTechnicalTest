@@ -6,13 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ApuestaTotalTechnicalTestApp: App {
+    
+    @Environment(\.modelContext) var context
+    
     var body: some Scene {
         WindowGroup {
-            //ContentView()
-            MedalsModuleBuilder.build()
-        }
+            MedalsEntryView() // una vista que reciba el context
+                .modelContainer(for: MedalLocal.self)        }
     }
 }
