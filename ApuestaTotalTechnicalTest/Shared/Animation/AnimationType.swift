@@ -6,10 +6,10 @@
 //
 
 enum AnimationType {
-    case pulse, flash, sparkle, confetti, shine, explosion, bounce
+    case pulse, flash, sparkle, confetti, shine, explosion, bounce, crownBurst
     
     init?(from string: String) {
-        switch string.lowercased() {
+        switch string {
         case "pulse": self = .pulse
         case "flash": self = .flash
         case "sparkle": self = .sparkle
@@ -17,7 +17,8 @@ enum AnimationType {
         case "shine": self = .shine
         case "explosion": self = .explosion
         case "bounce": self = .bounce
-        default: self = .pulse
+        case "crownBurst": self = .crownBurst
+        default: self = .flash
         }
     }
 }

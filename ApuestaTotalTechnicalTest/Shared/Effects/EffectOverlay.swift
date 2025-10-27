@@ -13,6 +13,9 @@ struct EffectOverlay: View {
     var body: some View {
         if let type = AnimationType(from: typeString) {
             animationView(for: type)
+                .onAppear(){
+                    print(type)
+                }
         }
     }
 
@@ -26,6 +29,7 @@ struct EffectOverlay: View {
         case .shine: ShineEffectView()
         case .explosion: ExplosionEffectView()
         case .bounce: BounceEffectView()
+        case .crownBurst: CrownBurstEffectView()
         }
     }
 }
