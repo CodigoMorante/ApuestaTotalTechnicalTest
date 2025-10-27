@@ -72,5 +72,4 @@ class MedalsViewModel: ObservableObject {
             }
     }
     
-
 }
