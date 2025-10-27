@@ -11,7 +11,7 @@ struct MedalsView: View {
     @StateObject var viewModel: MedalsViewModel
     @State private var tapCount = 0
     @State private var showAlert = false
-
+    
     var body: some View {
         NavigationStack {
             Group {
@@ -33,6 +33,7 @@ struct MedalsView: View {
                         }
                     }) {
                         Image(systemName: "arrow.counterclockwise")
+                            .foregroundColor(Color.red.opacity(0.6))
                     }
                 }
             }
