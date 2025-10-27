@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct MainTabView: View {
     
@@ -64,7 +63,7 @@ struct MainTabView: View {
                 Label("Álbum", systemImage: "photo.fill.on.rectangle.fill")
             }
         }
-        .onChange(of: scenePhase) { newPhase in
+        .onChange(of: scenePhase) { _, newPhase in
             medalsViewModel.handleScenePhaseChange(newPhase)
         }
     }

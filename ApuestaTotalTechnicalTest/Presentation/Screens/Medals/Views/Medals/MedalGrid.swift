@@ -18,8 +18,8 @@ struct MedalGrid: View {
                     MedalCards(medal: item)
                 }
             }
-            .padding(.horizontal, 24)
-            .padding(.vertical, 32)
+            .padding(.horizontal, 30)
+            .padding(.vertical, 30)
             .background(Color.green.opacity(0.3))
         }
     }
