@@ -9,6 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct MainTabView: View {
+    
+    @Environment(\.scenePhase) private var scenePhase
     @State private var tapCount = 0
     @State private var showAlert = false
     @StateObject var medalsViewModel: MedalsViewModel
@@ -32,7 +34,7 @@ struct MainTabView: View {
                     }
                     .alert("¿Reiniciar progreso?", isPresented: $showAlert) {
                         Button("Reiniciar", role: .destructive) {
-                            medalsViewModel.resetProgressde()
+                            medalsViewModel.resetMedalPoints()
                         }
                         Button("Cancelar", role: .cancel) { }
                     }
@@ -61,6 +63,9 @@ struct MainTabView: View {
             .tabItem {
                 Label("Álbum", systemImage: "photo.fill.on.rectangle.fill")
             }
+        }
+        .onChange(of: scenePhase) { newPhase in
+            medalsViewModel.handleScenePhaseChange(newPhase)
         }
     }
     

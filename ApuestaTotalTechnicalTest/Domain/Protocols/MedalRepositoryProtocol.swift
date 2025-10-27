@@ -7,9 +7,9 @@
 
 protocol MedalRepositoryProtocol {
     
-    func getMedals() async throws -> Void
+    func getMedals() async throws
     func getLocalMedals() throws -> [Medal]
-    func updateLocalMedals(_ updated: [Medal]) throws -> Void
+    func medalsToUpdate(_ updated: [Medal]) throws -> Void
     func resetAllMedals() throws
 
 }

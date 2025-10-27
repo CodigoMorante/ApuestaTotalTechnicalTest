@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct MedalsView: View {
     @StateObject var viewModel: MedalsViewModel
@@ -17,31 +16,19 @@ struct MedalsView: View {
     ]
     
     var body: some View {
-        VStack {
-            if let error = viewModel.errorMessage {
-                Text("Error: \(error)").foregroundColor(.red)
-            } else {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach(viewModel.medals, id: \.id) { item in
-                            MedalCards(medal: item)
-                        }
-                        .padding()
-                    }
-                }
-                .background(Color.green.opacity(0.3))
-                .onAppear {
-                    Task {
-                        viewModel.loadMedals()
-                        viewModel.increaseMedalPoints()
-                    }
+        NavigationStack {
+            Group {
+                if let error = viewModel.errorMessage {
+                    ErrorView(message: error)
+                } else {
+                    MedalGrid(medals: viewModel.medals)
+                        .padding(.bottom, 40)
                 }
             }
+            .task {
+                viewModel.loadMedals()
+            }
+            .navigationTitle("Medallas")
         }
     }
 }
-
-//#Preview {
-//    let context = ModelContainer.previewWithData.mainContext
-//    MedalsView(viewModel: MedalsViewModel(useCase: GetMedalsUseCase(repository: MedalRepository(context: context))))
-//}

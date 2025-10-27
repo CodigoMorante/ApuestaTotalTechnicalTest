@@ -16,37 +16,14 @@ class MedalsViewModel: ObservableObject {
     @Published var medals: [Medal] = []
     @Published var errorMessage: String? = nil
     private var medalTask: Task<Void, Never>?
-    
     private let useCase: MedalUseCaseProtocol
     
     init(useCase: MedalUseCaseProtocol) {
         self.useCase = useCase
-        observeAppLifecycle()
     }
     
-    private func observeAppLifecycle() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(appDidEnterBackground),
-            name: UIApplication.didEnterBackgroundNotification,
-            object: nil
-        )
-
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(appWillEnterForeground),
-            name: UIApplication.willEnterForegroundNotification,
-            object: nil
-        )
-    }
-    
-    @objc private func appDidEnterBackground() {
+    deinit {
         medalTask?.cancel()
-        medalTask = nil
-    }
-
-    @objc private func appWillEnterForeground() {
-        increaseMedalPoints()
     }
     
     func loadMedals() {
@@ -59,24 +36,40 @@ class MedalsViewModel: ObservableObject {
         }
     }
     
-    func increaseMedalPoints() {
+    private func startIncrementingMedalPoints() {
+        stopIncrementingMedalPoints()
         medalTask = Task {
-                while !Task.isCancelled {
-                    do {
-                        medals = try await useCase.incrementMedalPointsUseCase.execute()
-                        try await Task.sleep(nanoseconds: 1_000_000_000)
-                    } catch {
+            while !Task.isCancelled {
+                do {
+                    medals = try await useCase.incrementMedalPointsUseCase.execute()
+                    try await Task.sleep(nanoseconds: 1_000_000_000)
+                } catch {
 
-                    }
                 }
             }
+        }
     }
     
-    func resetProgressde() {
+    private func stopIncrementingMedalPoints() {
+        medalTask?.cancel()
+        medalTask = nil
+    }
+    
+    func resetMedalPoints() {
         do {
             try useCase.resetMedalUseCase.execute()
         } catch {
-            print("Error al reiniciar: \(error)")
+            errorMessage = error.localizedDescription
+        }
+    }
+    
+    func handleScenePhaseChange(_ phase: ScenePhase) {
+        switch phase {
+        case .active:
+            startIncrementingMedalPoints()
+        case .background:
+            stopIncrementingMedalPoints()
+        default: break
         }
     }
     
