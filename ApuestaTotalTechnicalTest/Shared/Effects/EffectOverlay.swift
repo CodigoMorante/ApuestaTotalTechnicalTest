@@ -23,6 +23,7 @@ struct EffectOverlay: View {
         case .flash: FlashEffectView()
         case .sparkle: SparkleEffectView()
         case .confetti: ConfettiEffectView()
+        case .shine: ShineEffectView()
         }
     }
 }
