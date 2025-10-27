@@ -8,4 +8,5 @@
 protocol MedalUseCaseProtocol {
     var syncMedalsUseCase: SyncMedalsUseCaseProtocol { get }
     var incrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol { get }
+    var resetMedalUseCase: ResetMedalUseCaseProtocol { get }
 }

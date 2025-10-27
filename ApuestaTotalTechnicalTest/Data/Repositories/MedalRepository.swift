@@ -52,5 +52,14 @@ final class MedalRepository: MedalRepositoryProtocol {
         }
         try context.save()
     }
+    
+    func resetAllMedals() throws {
+        let medals = try context.fetch(FetchDescriptor<MedalLocal>())
+        for medal in medals {
+            medal.points = 0
+            medal.level = 1
+        }
+        try context.save()
+    }
 
 }

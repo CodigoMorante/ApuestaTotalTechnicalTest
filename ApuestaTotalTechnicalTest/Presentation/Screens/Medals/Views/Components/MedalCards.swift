@@ -11,7 +11,7 @@ struct MedalCards: View {
     @State private var rotation: Double = 0
     @State private var isFlipped = false
     @State private var showEffect = false
-
+    
     var medal: Medal
     
     var body: some View {
@@ -105,7 +105,7 @@ struct MedalCards: View {
                     }
                 }
         )
-
+        
     }
     
     @ViewBuilder

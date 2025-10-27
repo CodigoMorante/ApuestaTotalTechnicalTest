@@ -8,4 +8,5 @@
 struct MedalUseCase: MedalUseCaseProtocol {
     var syncMedalsUseCase: SyncMedalsUseCaseProtocol
     var incrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol
+    var resetMedalUseCase: ResetMedalUseCaseProtocol
 }

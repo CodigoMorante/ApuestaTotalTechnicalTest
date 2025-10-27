@@ -17,10 +17,11 @@ struct IncrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol {
         
         let medals = try repository.getLocalMedals()
         var allReached = checkTheMaximumLevelReached(medals: medals)
-        let randomIncrement = Int.random(in: 8...10)
 
         if !allReached {
                 for medal in medals {
+                    let randomIncrement = Int.random(in: 8...10)
+
                     if medal.isLocked {
                         
                     } else {

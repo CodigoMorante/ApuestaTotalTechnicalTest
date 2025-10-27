@@ -72,4 +72,12 @@ class MedalsViewModel: ObservableObject {
             }
     }
     
+    func resetProgressde() {
+        do {
+            try useCase.resetMedalUseCase.execute()
+        } catch {
+            print("Error al reiniciar: \(error)")
+        }
+    }
+    
 }
