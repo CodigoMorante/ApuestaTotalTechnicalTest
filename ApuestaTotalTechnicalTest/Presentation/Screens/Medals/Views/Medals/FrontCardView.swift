@@ -12,61 +12,40 @@ struct FrontCardView: View {
     @Binding var showEffect: Bool
 
     var body: some View {
-        VStack(spacing: 8) {
-            Text("\(medal.level)")
-                .foregroundStyle(Color(hex: medal.progressColor))
-                .font(.system(size: 18, weight: .bold))
-
-            Text(medal.name)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(.black)
-                .shadow(color: Color(hex: medal.progressColor), radius: 15, x: 4, y: 4)
-
-            AsyncImage(url: URL(string: medal.icon)) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 80)
-                    .frame(maxWidth: .infinity)
-            } placeholder: {
-                ProgressView()
-            }
-
-            Text(medal.category).foregroundStyle(.blue)
-            Text("Points: \(medal.points)").foregroundStyle(.purple)
-            Text(medal.rarity).foregroundStyle(.green)
-            Text("Max Level: \(medal.maxLevel)").foregroundStyle(.orange)
-        }
-        .padding()
-        .font(.headline)
-        .foregroundColor(.white)
-        .onChange(of: medal.points) {
-            if medal.points == 100 {
-                showEffect = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    withAnimation {
-                        showEffect = false
-                    }
+        ZStack {
+            cardContent
+                .modifier(CardStyle())
+                .onChange(of: medal.points) { _, newValue in
+                    triggerEffectIfNeeded(for: newValue)
                 }
+
+            if shouldShowEffect {
+                MedalEffectOverlay(typeString: medal.animationType)
+                    .transition(.opacity)
             }
         }
-        .overlay(
-            Group {
-                if medal.points == 100 && showEffect {
-                    if let type = AnimationType(from: medal.animationType) {
-                        animationView(for: type)
-                            .transition(.opacity)
-                    }
-                }
-            }
-        )
     }
 
-    @ViewBuilder
-    private func animationView(for type: AnimationType) -> some View {
-        switch type {
-        case .pulse: PulseEffectView()
-        case .flash: FlashEffectView()
+    private var cardContent: some View {
+        VStack(spacing: 12) {
+            MedalHeaderSection(medal: medal)
+            MedalImageSection(iconURL: medal.icon)
+            MedalInfoSection(medal: medal)
+        }
+    }
+
+    private var shouldShowEffect: Bool {
+        medal.points == 100 && showEffect
+    }
+
+    private func triggerEffectIfNeeded(for points: Int) {
+        guard points == 100 else { return }
+        showEffect = true
+        Task {
+            try? await Task.sleep(nanoseconds: 1_000_000_000)
+            withAnimation {
+                showEffect = false
+            }
         }
     }
 }
