@@ -5,6 +5,11 @@
 //  Created by Christian Morante on 23/10/25.
 //
 
-class StreaksView {
-    
+import SwiftUI
+
+struct StreaksView: View {
+    var body: some View {
+        Text("Streaks")
+    }
+
 }

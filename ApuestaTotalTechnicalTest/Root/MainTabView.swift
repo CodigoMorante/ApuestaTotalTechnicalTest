@@ -19,26 +19,20 @@ struct MainTabView: View {
                     Label("Medallas", systemImage: "star.fill")
                 }
             
-            NavigationStack {
-                Text("Misiones")
-            }
-            .tabItem {
-                Label("Misiones", systemImage: "flag.fill")
-            }
+            MissionsModuleBuilder.buildView()
+                .tabItem {
+                    Label("Misiones", systemImage: "flag.fill")
+                }
             
-            NavigationStack {
-                Text("Streaks")
-            }
-            .tabItem {
-                Label("Rachas", systemImage: "flame.fill")
-            }
+            StreaksModuleBuilder.buildView()
+                .tabItem {
+                    Label("Rachas", systemImage: "flame.fill")
+                }
             
-            NavigationStack {
-                Text("Álbum")
-            }
-            .tabItem {
-                Label("Álbum", systemImage: "photo.fill.on.rectangle.fill")
-            }
+            AlbumsModuleBuilder.buildView()
+                .tabItem {
+                    Label("Álbum", systemImage: "photo.fill.on.rectangle.fill")
+                }
         }
         .onChange(of: scenePhase) { _, newPhase in
             medalsViewModel.handleScenePhaseChange(newPhase)
