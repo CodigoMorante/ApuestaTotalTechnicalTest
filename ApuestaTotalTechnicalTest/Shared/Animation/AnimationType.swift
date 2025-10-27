@@ -6,7 +6,7 @@
 //
 
 enum AnimationType: String {
-    case pulse, flash, sparkle, confetti, shine, explosion, bounce, crownBurst, scalePop
+    case pulse, flash, sparkle, confetti, shine, explosion, bounce, crownBurst, scalePop, rotate
     
     init?(from raw: String) {
         self.init(rawValue: raw)

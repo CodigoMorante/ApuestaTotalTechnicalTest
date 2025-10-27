@@ -28,6 +28,7 @@ struct EffectOverlay: View {
         case .bounce: BounceEffectView()
         case .crownBurst: CrownBurstEffectView()
         case .scalePop: ScalePopEffectView()
+        case .rotate: RotateEffectView()
         }
     }
 }
