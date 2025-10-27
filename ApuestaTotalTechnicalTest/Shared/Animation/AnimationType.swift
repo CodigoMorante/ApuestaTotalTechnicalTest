@@ -6,7 +6,7 @@
 //
 
 enum AnimationType {
-    case pulse, flash, sparkle, confetti, shine
+    case pulse, flash, sparkle, confetti, shine, explosion
     
     init?(from string: String) {
         switch string.lowercased() {
@@ -15,6 +15,7 @@ enum AnimationType {
         case "sparkle": self = .sparkle
         case "confetti": self = .confetti
         case "shine": self = .shine
+        case "explosion": self = .explosion
         default: self = .pulse
         }
     }
