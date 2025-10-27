@@ -1,5 +1,5 @@
 //
-//  MedalEffectOverlay.swift
+//  EffectOverlay.swift
 //  ApuestaTotalTechnicalTest
 //
 //  Created by Christian Morante on 27/10/25.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MedalEffectOverlay: View {
+struct EffectOverlay: View {
     let typeString: String
 
     var body: some View {

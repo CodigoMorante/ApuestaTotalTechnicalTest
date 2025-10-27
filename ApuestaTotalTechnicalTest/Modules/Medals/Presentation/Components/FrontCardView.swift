@@ -20,7 +20,7 @@ struct FrontCardView: View {
                 }
 
             if shouldShowEffect {
-                MedalEffectOverlay(typeString: medal.animationType)
+                EffectOverlay(typeString: medal.animationType)
                     .transition(.opacity)
             }
         }
