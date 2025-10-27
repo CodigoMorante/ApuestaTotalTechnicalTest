@@ -5,8 +5,6 @@
 //  Created by Christian Morante on 27/10/25.
 //
 
-import SwiftData
-
 final class ResetMedalUseCase: ResetMedalUseCaseProtocol {
     private let repository: MedalRepository
     

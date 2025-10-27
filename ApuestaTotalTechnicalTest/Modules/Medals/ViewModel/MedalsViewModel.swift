@@ -6,9 +6,7 @@
 //
 
 import Combine
-import Foundation
 import SwiftUI
-import SwiftData
 
 @MainActor
 class MedalsViewModel: ObservableObject {

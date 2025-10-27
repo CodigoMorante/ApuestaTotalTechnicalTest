@@ -13,7 +13,7 @@ struct ApuestaTotalTechnicalTestApp: App {
         
     var body: some Scene {
         WindowGroup {
-            MainTabViewContainer() // una vista que reciba el context
+            MainTabViewContainer()
                 .modelContainer(for: MedalLocal.self)
         }
     }
