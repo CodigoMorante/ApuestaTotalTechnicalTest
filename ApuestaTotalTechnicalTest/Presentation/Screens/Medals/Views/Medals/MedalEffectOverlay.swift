@@ -21,6 +21,7 @@ struct MedalEffectOverlay: View {
         switch type {
         case .pulse: PulseEffectView()
         case .flash: FlashEffectView()
+        case .sparkle: SparkleEffectView()
         }
     }
 }

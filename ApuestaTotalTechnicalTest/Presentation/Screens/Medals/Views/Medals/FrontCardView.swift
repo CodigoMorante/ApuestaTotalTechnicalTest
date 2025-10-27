@@ -44,7 +44,7 @@ struct FrontCardView: View {
         Task {
             try? await Task.sleep(nanoseconds: 1_000_000_000)
             withAnimation {
-                showEffect = false
+                showEffect = true
             }
         }
     }
