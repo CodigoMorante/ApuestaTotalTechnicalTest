@@ -12,16 +12,17 @@ struct FrontCardView: View {
     @Binding var showEffect: Bool
 
     var body: some View {
-        ZStack {
-            cardContent
-                .modifier(CardStyle())
-                .onChange(of: medal.points) { _, newValue in
-                    triggerEffectIfNeeded(for: newValue)
+        ScrollView {
+            ZStack {
+                cardContent
+                    .modifier(CardStyle())
+                    .onChange(of: medal.points) { _, newValue in
+                        triggerEffectIfNeeded(for: newValue)
+                    }
+                if shouldShowEffect {
+                    EffectOverlay(typeString: medal.animationType)
+                        .transition(.opacity)
                 }
-
-            if shouldShowEffect {
-                EffectOverlay(typeString: medal.animationType)
-                    .transition(.opacity)
             }
         }
     }
