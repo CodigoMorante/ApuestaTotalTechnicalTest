@@ -24,14 +24,12 @@ class MedalsViewModel: ObservableObject {
         medalTask?.cancel()
     }
     
-    func loadMedals() {
-        Task {
+    func loadMedals() async {
             do {
                 medals = try await useCase.syncMedalsUseCase.execute()
             } catch {
                 errorMessage = error.localizedDescription
             }
-        }
     }
     
     private func startIncrementingMedalPoints() {
