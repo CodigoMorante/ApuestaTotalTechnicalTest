@@ -29,7 +29,7 @@ class MedalsViewModel: ObservableObject {
             let result = try await useCase.syncMedalsUseCase.execute()
             updateMedals(result)
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = MedalError.syncFailed.message
         }
     }
     
@@ -42,7 +42,7 @@ class MedalsViewModel: ObservableObject {
                     try await Task.sleep(nanoseconds: 1_000_000_000)
                     await loadMedals()
                 } catch {
-                    errorMessage = error.localizedDescription
+
                 }
             }
         }
@@ -58,7 +58,7 @@ class MedalsViewModel: ObservableObject {
         do {
             try await useCase.resetMedalUseCase.execute()
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = MedalError.resetFailed.message
         }
     }
     
