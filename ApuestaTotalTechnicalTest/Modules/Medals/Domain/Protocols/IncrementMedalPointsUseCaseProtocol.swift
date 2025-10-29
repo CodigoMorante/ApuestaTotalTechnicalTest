@@ -6,5 +6,5 @@
 //
 
 protocol IncrementMedalPointsUseCaseProtocol {
-    func execute() async throws -> [Medal]
+    func execute(medals: [Medal]) async throws
 }

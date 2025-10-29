@@ -25,20 +25,21 @@ class MedalsViewModel: ObservableObject {
     }
     
     func loadMedals() async {
-            do {
-                medals = try await useCase.syncMedalsUseCase.execute()
-            } catch {
-                errorMessage = error.localizedDescription
-            }
+        do {
+            medals = try await useCase.syncMedalsUseCase.execute()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
     }
     
     private func startIncrementingMedalPoints() {
-        stopIncrementingMedalPoints()
         medalTask = Task {
+            await stopIncrementingMedalPoints()
             while !Task.isCancelled {
                 do {
-                    medals = try await useCase.incrementMedalPointsUseCase.execute()
+                    try await useCase.incrementMedalPointsUseCase.execute(medals: medals)
                     try await Task.sleep(nanoseconds: 1_000_000_000)
+                    await loadMedals()
                 } catch {
 
                 }
@@ -46,25 +47,25 @@ class MedalsViewModel: ObservableObject {
         }
     }
     
-    private func stopIncrementingMedalPoints() {
+    private func stopIncrementingMedalPoints() async {
         medalTask?.cancel()
         medalTask = nil
     }
     
-    func resetMedalPoints() {
+    func resetMedalPoints() async {
         do {
-            try useCase.resetMedalUseCase.execute()
+            try await useCase.resetMedalUseCase.execute()
         } catch {
             errorMessage = error.localizedDescription
         }
     }
     
-    func handleScenePhaseChange(_ phase: ScenePhase) {
+    func handleScenePhaseChange(_ phase: ScenePhase) async {
         switch phase {
         case .active:
             startIncrementingMedalPoints()
         case .background:
-            stopIncrementingMedalPoints()
+            await stopIncrementingMedalPoints()
         default: break
         }
     }

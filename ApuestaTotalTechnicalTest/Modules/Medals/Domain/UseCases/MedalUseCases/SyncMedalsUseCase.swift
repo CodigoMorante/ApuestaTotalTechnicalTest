@@ -14,14 +14,14 @@ struct SyncMedalsUseCase: SyncMedalsUseCaseProtocol {
     }
 
     func execute() async throws -> [Medal] {
-        var localMedals = try repository.getLocalMedals()
+        var localMedals = try await repository.getLocalMedals()
         
         guard localMedals.isEmpty else {
             return localMedals 
         }
         
         try await repository.getMedals()
-        localMedals = try repository.getLocalMedals()
+        localMedals = try await repository.getLocalMedals()
         return localMedals
     }
     

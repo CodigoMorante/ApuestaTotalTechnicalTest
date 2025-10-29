@@ -7,16 +7,15 @@
 
 struct IncrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol {
     private let repository: MedalRepositoryProtocol
-
+    
     init(repository: MedalRepositoryProtocol) {
         self.repository = repository
     }
-
-    func execute() async throws -> [Medal] {
-        let medals = try repository.getLocalMedals()
+    
+    func execute(medals: [Medal]) async throws {
 
         guard !allMedalsAtMaxLevel(medals) else {
-            return medals
+            return
         }
 
         for medal in medals {
@@ -25,8 +24,7 @@ struct IncrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol {
             applyProgress(to: medal, increment: increment)
         }
 
-        try repository.medalsToUpdate(medals)
-        return medals
+        try await repository.medalsToUpdate(medals)
     }
 
     private func applyProgress(to medal: Medal, increment: Int) {

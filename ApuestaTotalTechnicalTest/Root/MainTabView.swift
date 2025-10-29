@@ -35,7 +35,7 @@ struct MainTabView: View {
                 }
         }
         .onChange(of: scenePhase) { _, newPhase in
-            medalsViewModel.handleScenePhaseChange(newPhase)
+            Task { await medalsViewModel.handleScenePhaseChange(newPhase)}
         }
     }
     

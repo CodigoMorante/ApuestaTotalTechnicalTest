@@ -28,12 +28,12 @@ final class MedalRepository: MedalRepositoryProtocol {
         try context.save()
     }
     
-    func getLocalMedals() throws -> [Medal] {
+    func getLocalMedals() async throws -> [Medal] {
         let locals = try context.fetch(FetchDescriptor<MedalLocal>())
         return locals.map { MedalMapper.toEntity($0) }
     }
     
-    func medalsToUpdate(_ updated: [Medal]) throws -> Void {
+    func medalsToUpdate(_ updated: [Medal]) async throws -> Void {
         for medal in updated {
             let medalId = medal.id
             let descriptor = FetchDescriptor<MedalLocal>(
@@ -50,7 +50,7 @@ final class MedalRepository: MedalRepositoryProtocol {
         try context.save()
     }
     
-    func resetAllMedals() throws {
+    func resetAllMedals() async throws {
         let medals = try context.fetch(FetchDescriptor<MedalLocal>())
         guard !medals.isEmpty else { return }
         for medal in medals {

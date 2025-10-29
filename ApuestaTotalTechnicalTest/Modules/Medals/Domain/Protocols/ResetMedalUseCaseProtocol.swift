@@ -6,5 +6,5 @@
 //
 
 protocol ResetMedalUseCaseProtocol {
-    func execute() throws
+    func execute() async throws
 }

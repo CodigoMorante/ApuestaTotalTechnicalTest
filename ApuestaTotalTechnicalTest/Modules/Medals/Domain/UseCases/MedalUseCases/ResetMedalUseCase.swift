@@ -12,7 +12,7 @@ final class ResetMedalUseCase: ResetMedalUseCaseProtocol {
         self.repository = repository
     }
     
-    func execute() throws {
-        try repository.resetAllMedals()
+    func execute() async throws {
+        try await repository.resetAllMedals()
     }
 }

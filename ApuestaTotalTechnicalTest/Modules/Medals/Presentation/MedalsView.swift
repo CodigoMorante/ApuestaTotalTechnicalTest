@@ -39,12 +39,12 @@ struct MedalsView: View {
             }
             .alert("¿Reiniciar progreso?", isPresented: $showAlert) {
                 Button("Reiniciar", role: .destructive) {
-                    viewModel.resetMedalPoints()
+                    Task { await viewModel.resetMedalPoints() }
                 }
                 Button("Cancelar", role: .cancel) { }
             }
             .task {
-                viewModel.loadMedals()
+                await viewModel.loadMedals()
             }
         }
     }
