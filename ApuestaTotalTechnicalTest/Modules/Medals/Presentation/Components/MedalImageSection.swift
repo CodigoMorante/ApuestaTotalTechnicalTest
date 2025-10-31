@@ -11,14 +11,17 @@ struct MedalImageSection: View {
     let iconURL: String
 
     var body: some View {
-        AsyncImage(url: URL(string: iconURL)) { image in
-            image
-                .resizable()
-                .scaledToFit()
-                .frame(height: 80)
-                .frame(maxWidth: .infinity)
-        } placeholder: {
-            ProgressView()
+        ZStack {
+            AsyncImage(url: URL(string: iconURL)) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 80)
+                    .frame(maxWidth: .infinity)
+            } placeholder: {
+                ProgressView()
+            }
         }
+        .frame(height: 80)
     }
 }
