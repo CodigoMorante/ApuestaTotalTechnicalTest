@@ -7,7 +7,7 @@
 
 struct IncrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol {
     private let repository: MedalRepositoryProtocol
-    
+
     init(repository: MedalRepositoryProtocol) {
         self.repository = repository
     }
@@ -48,6 +48,12 @@ struct IncrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol {
     }
 
     private func allMedalsAtMaxLevel(_ medals: [Medal]) -> Bool {
-        medals.allSatisfy { $0.level == $0.maxLevel }
+        for medal in medals {
+            if medal.isLocked { continue }
+            if medal.level < medal.maxLevel {
+                return false
+            }
+        }
+        return true
     }
 }

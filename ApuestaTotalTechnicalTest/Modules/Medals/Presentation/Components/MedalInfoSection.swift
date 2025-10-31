@@ -27,7 +27,6 @@ struct MedalInfoSection: View {
             Text("Nivel Máximo: \(medal.maxLevel)")
                 .foregroundStyle(.orange)
                 .multilineTextAlignment(.center)
-
         }
     }
 }

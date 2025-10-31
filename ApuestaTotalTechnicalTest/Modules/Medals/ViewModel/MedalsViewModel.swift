@@ -38,7 +38,7 @@ class MedalsViewModel: ObservableObject {
     func startIncrementingMedalPoints() async {
         await stopIncrementingMedalPoints()
         medalTask = Task {
-            while !Task.isCancelled || !allMedalsAtMaxLevel {
+            while !Task.isCancelled && !allMedalsAtMaxLevel {
                 do {
                     allMedalsAtMaxLevel = try await useCase.incrementMedalPointsUseCase.execute(medals: medals)
                     try await Task.sleep(nanoseconds: 1_000_000_000)
@@ -49,7 +49,6 @@ class MedalsViewModel: ObservableObject {
             }
         }
     }
-
     
     private func stopIncrementingMedalPoints() async {
         medalTask?.cancel()
@@ -59,6 +58,7 @@ class MedalsViewModel: ObservableObject {
     func resetMedalPoints() async {
         do {
             try await useCase.resetMedalUseCase.execute()
+            allMedalsAtMaxLevel = false
         } catch {
             errorMessage = MedalError.resetFailed.message
         }
