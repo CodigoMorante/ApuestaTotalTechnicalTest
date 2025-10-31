@@ -9,8 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    @Environment(\.scenePhase) private var scenePhase
-    @StateObject var medalsViewModel: MedalsViewModel
+    @ObservedObject var medalsViewModel: MedalsViewModel
     
     var body: some View {
         TabView {
@@ -33,9 +32,6 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Álbum", systemImage: "photo.fill.on.rectangle.fill")
                 }
-        }
-        .onChange(of: scenePhase) { _, newPhase in
-            Task { await medalsViewModel.handleScenePhaseChange(newPhase)}
         }
     }
     

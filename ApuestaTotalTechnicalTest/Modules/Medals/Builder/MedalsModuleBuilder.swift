@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct MedalsModuleBuilder {
-    static func buildViewModel(context: ModelContext) -> some MedalsViewModel {
+    static func buildViewModel(context: ModelContext) -> MedalsViewModel {
         let repository = MedalRepository(context: context)
         let syncMedalsUseCase = SyncMedalsUseCase(repository: repository)
         let incrementMedalsUseCase = IncrementMedalPointsUseCase(repository: repository)

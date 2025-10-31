@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MedalsView: View {
-    @StateObject var viewModel: MedalsViewModel
+    @ObservedObject var viewModel: MedalsViewModel
     @State private var tapCount = 0
     @State private var showAlert = false
     
@@ -42,9 +42,6 @@ struct MedalsView: View {
                     Task { await viewModel.resetMedalPoints() }
                 }
                 Button("Cancelar", role: .cancel) { }
-            }
-            .task {
-                await viewModel.loadMedals()
             }
         }
     }

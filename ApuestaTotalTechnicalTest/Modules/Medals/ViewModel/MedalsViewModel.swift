@@ -11,8 +11,10 @@ import SwiftUI
 @MainActor
 class MedalsViewModel: ObservableObject {
     
-    @Published var medals: [Medal] = []
-    @Published var errorMessage: String? = nil
+    @Published private(set) var medals: [Medal] = []
+    @Published private(set) var errorMessage: String? = nil
+    private var allMedalsAtMaxLevel: Bool = false
+    
     private var medalTask: Task<Void, Never>?
     private let useCase: MedalUseCaseProtocol
     
@@ -36,13 +38,13 @@ class MedalsViewModel: ObservableObject {
     func startIncrementingMedalPoints() async {
         await stopIncrementingMedalPoints()
         medalTask = Task {
-            while !Task.isCancelled {
+            while !Task.isCancelled || !allMedalsAtMaxLevel {
                 do {
-                    try await useCase.incrementMedalPointsUseCase.execute(medals: medals)
+                    allMedalsAtMaxLevel = try await useCase.incrementMedalPointsUseCase.execute(medals: medals)
                     try await Task.sleep(nanoseconds: 1_000_000_000)
                     await loadMedals()
                 } catch {
-
+                    break
                 }
             }
         }

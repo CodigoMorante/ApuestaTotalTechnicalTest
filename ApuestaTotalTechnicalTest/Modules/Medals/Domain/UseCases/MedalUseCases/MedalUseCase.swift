@@ -6,7 +6,7 @@
 //
 
 struct MedalUseCase: MedalUseCaseProtocol {
-    var syncMedalsUseCase: SyncMedalsUseCaseProtocol
-    var incrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol
-    var resetMedalUseCase: ResetMedalUseCaseProtocol
+    let syncMedalsUseCase: SyncMedalsUseCaseProtocol
+    let incrementMedalPointsUseCase: IncrementMedalPointsUseCaseProtocol
+    let resetMedalUseCase: ResetMedalUseCaseProtocol
 }

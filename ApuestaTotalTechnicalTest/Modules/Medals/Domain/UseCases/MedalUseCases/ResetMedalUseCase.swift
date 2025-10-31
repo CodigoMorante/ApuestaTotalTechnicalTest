@@ -6,9 +6,9 @@
 //
 
 final class ResetMedalUseCase: ResetMedalUseCaseProtocol {
-    private let repository: MedalRepository
+    private let repository: MedalRepositoryProtocol
     
-    init(repository: MedalRepository) {
+    init(repository: MedalRepositoryProtocol) {
         self.repository = repository
     }
     

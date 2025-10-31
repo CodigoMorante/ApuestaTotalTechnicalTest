@@ -16,7 +16,7 @@ enum MedalError: Error {
         case .syncFailed: return "No se pudieron sincronizar las medallas."
         case .incrementFailed: return "Error al incrementar puntos."
         case .resetFailed: return "No se pudo reiniciar el progreso."
-        case .unknown(let error): return error.localizedDescription
+        case .unknown(_): return "unknown error"
         }
     }
 }
