@@ -12,9 +12,15 @@ struct BackCardView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            Text(medal.reward).foregroundStyle(.red)
-            Text(medal.nextLevelGoal).foregroundStyle(.gray)
-            Text(medal.description).foregroundStyle(.yellow)
+            Text(medal.reward)
+                .foregroundStyle(.black)
+                .multilineTextAlignment(.center)
+            Text(medal.nextLevelGoal)
+                .foregroundStyle(.black)
+                .multilineTextAlignment(.center)
+            Text(medal.description)
+                .foregroundStyle(.black)
+                .multilineTextAlignment(.center)
         }
         .padding()
         .font(.headline)

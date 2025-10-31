@@ -14,15 +14,20 @@ struct MedalInfoSection: View {
         VStack(spacing: 4) {
             Text(medal.category)
                 .foregroundStyle(.blue)
+                .multilineTextAlignment(.center)
 
             Text("Puntos: \(medal.points)")
                 .foregroundStyle(.purple)
+                .multilineTextAlignment(.center)
 
             Text("Rareza: \(medal.rarity)")
                 .foregroundStyle(.green)
+                .multilineTextAlignment(.center)
 
             Text("Nivel Máximo: \(medal.maxLevel)")
                 .foregroundStyle(.orange)
+                .multilineTextAlignment(.center)
+
         }
     }
 }
