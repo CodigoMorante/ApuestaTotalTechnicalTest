@@ -13,7 +13,7 @@ class MedalsViewModel: ObservableObject {
     
     @Published private(set) var medals: [Medal] = []
     @Published private(set) var errorMessage: String? = nil
-    private var allMedalsAtMaxLevel: Bool = false
+    @State private var allMedalsAtMaxLevel: Bool = false
     
     private var medalTask: Task<Void, Never>?
     private let useCase: MedalUseCaseProtocol
