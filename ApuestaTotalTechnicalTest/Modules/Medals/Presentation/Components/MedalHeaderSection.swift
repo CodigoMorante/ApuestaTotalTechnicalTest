@@ -21,5 +21,6 @@ struct MedalHeaderSection: View {
                 .foregroundStyle(.black)
                 .shadow(color: Color(hex: medal.progressColor), radius: 15, x: 4, y: 4)
         }
+        .frame(height: 80)
     }
 }
