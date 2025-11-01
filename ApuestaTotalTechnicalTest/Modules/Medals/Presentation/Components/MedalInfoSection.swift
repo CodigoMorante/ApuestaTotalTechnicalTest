@@ -20,7 +20,7 @@ struct MedalInfoSection: View {
                 .foregroundStyle(.purple)
                 .multilineTextAlignment(.center)
 
-            Text("Rareza: \(medal.rarity)")
+            Text(medal.rarity)
                 .foregroundStyle(.green)
                 .multilineTextAlignment(.center)
 
