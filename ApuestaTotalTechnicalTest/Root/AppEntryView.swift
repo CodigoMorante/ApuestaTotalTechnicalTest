@@ -10,7 +10,6 @@ import SwiftData
 
 struct AppEntryView: View {
     @State private var isReady = false
-    @Environment(\.modelContext) private var context
     @ObservedObject var medalsViewModel: MedalsViewModel
         
     var body: some View {
