@@ -15,7 +15,8 @@ struct MedalGrid: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(medals, id: \.id) { item in
-                    MedalCards(medal: item)
+                        MedalCards(medal: item)
+                            .opacity(item.isLocked ? 0.5 : 1.0)
                 }
             }
             .padding(.horizontal, 30)
