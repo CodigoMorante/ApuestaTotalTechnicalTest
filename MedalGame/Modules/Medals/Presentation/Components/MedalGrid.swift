@@ -21,7 +21,6 @@ struct MedalGrid: View {
             }
             .padding(.horizontal, 30)
             .padding(.vertical, 30)
-            .background(Color.green.opacity(0.3))
         }
     }
 }

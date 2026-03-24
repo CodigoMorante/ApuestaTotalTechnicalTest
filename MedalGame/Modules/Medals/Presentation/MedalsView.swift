@@ -21,6 +21,7 @@ struct MedalsView: View {
                     MedalGrid(medals: viewModel.medals)
                 }
             }
+            .background(Color.green.opacity(0.3))
             .navigationTitle("Medallas")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
